@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "request": "~2.33.0",
     "xml2js": "~0.4.1"
   },
   "devDependencies": {},

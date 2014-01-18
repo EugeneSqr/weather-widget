@@ -1,0 +1,22 @@
+{
+  "name": "weather-aggregator",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "xml2js": "~0.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Femel/weather-widget.git"
+  },
+  "author": "Femel",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/Femel/weather-widget/issues"
+  }
+}

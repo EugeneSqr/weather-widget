@@ -9,7 +9,7 @@ var cities = Object.freeze( {
         Peter: 26063
 });
 
-request({ uri: buildRequestUrl(cities.Nino) },
+request({ uri: buildWeatherUrl(cities.Nino) },
         function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                         parseString(body, function (err, result) {
@@ -19,6 +19,6 @@ request({ uri: buildRequestUrl(cities.Nino) },
                 }
         });
 
-function buildRequestUrl(city) {
+function buildWeatherUrl(city) {
         return baseUrl + city + '.xml';
 }

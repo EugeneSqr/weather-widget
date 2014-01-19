@@ -13,23 +13,21 @@ exports.extract = function(data) {
 
         var days = data.forecast.day;
         for(var i = 0; i < max_days; i++) {
-                var day_time = days[i].day_part[day_index];
-                var night_time = days[i].day_part[night_index];
-
                 var day = {
                         date: days[i].$.date,
-                        day_time : {
-                                temperature: day_time.temperature[0],
-                                weather_type: day_time.weather_type_short[0]
-                        },
-                        night_time : {
-                                temperature: day_time.temperature[0],
-                                weather_type: day_time.weather_type_short[0]
-                        }
+                        day_time : extract_partial(days[i].day_part[day_index]),
+                        night_time : extract_partial(days[i].day_part[night_index])
                 }
                 
                 extracted.days.push(day);
         }
 
         return extracted;
+}
+
+function extract_partial(data) {
+        return {
+                temperature : data.temperature[0],
+                weather_type : data.weather_type_short[0]
+        }                        
 }

@@ -1,18 +1,35 @@
-var Canvas = require('canvas')
-        , canvas = new Canvas(200,200)
-        , ctx = canvas.getContext('2d');
+// The module builds widget image for a single day based on data
+// retrieved from a weather service
+var Canvas = require('canvas'),
+    canvas = new Canvas(150, 45),
+    ctx = canvas.getContext('2d');
+
+var day_label = "День:",
+    night_label = "Ночь:"
 
 exports.build = function(data) {
-        ctx.font = '30px Impact';
-        ctx.rotate(.1);
-        ctx.fillText("Awesome!", 50, 100);
+        var item = data.days[0];
+        // Header
+        ctx.font = 'bold 12px Impact';
+        ctx.fillText(item.date, 3, 12);
+        draw_horizontal_line(ctx, 3, 147, 15);
+        // Day
+        fill_data(ctx, day_label, item.day_time, 28);
+        // Night
+        fill_data(ctx, night_label, item.night_time, 41);
 
-        var te = ctx.measureText('Awesome!');
-        ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-        ctx.beginPath();
-        ctx.lineTo(50, 102);
-        ctx.lineTo(50 + te.width, 102);
-        ctx.stroke();
+        return canvas.toBuffer();
+}
 
-        console.dir(canvas.toBuffer());
-}    
+function fill_data(context, label, data, vertical_offset) {
+        var text = label + ' ' + data.temperature + ', ' + data.weather_type;
+        context.font = 'normal 10px Impact';
+        context.fillText(text, 3, vertical_offset);
+}
+
+function draw_horizontal_line(context, start, end, vertical_offset) {
+        context.beginPath();
+        context.moveTo(start, vertical_offset);
+        context.lineTo(end, vertical_offset);
+        context.stroke();
+}

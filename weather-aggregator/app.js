@@ -1,7 +1,8 @@
-var parseString = require('xml2js').parseString;
-var request = require('request');
-var extractor = require('./extractor.js');
-var imageBuilder = require('./imageBuilder.js');
+var parseString = require('xml2js').parseString,
+    request = require('request'),
+    extractor = require('./extractor.js'),
+    imageBuilder = require('./imageBuilder.js'),
+    storage = require('./storage.js');
 
 var baseUrl = 'http://export.yandex.ru/weather-ng/forecasts/';
 var cities = Object.freeze( {
@@ -18,6 +19,7 @@ request({ uri: buildWeatherUrl(cities.Nino) },
                                 var extracted = extractor.extract(result);
                                 console.dir(extracted);
                                 imageBuilder.build(extracted);
+                                storage.persist(null);
                         });
                 }
         });

@@ -1,2 +1,3 @@
 *.swp
 weather-aggregator/node_modules
+widget-generator/node_modules

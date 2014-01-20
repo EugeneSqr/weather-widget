@@ -1,0 +1,24 @@
+{
+  "name": "widget-generator",
+  "version": "0.0.0",
+  "description": "widget-generator",
+  "main": "app.js",
+  "dependencies": {
+    "redis": "~0.10.0",
+    "express": "~3.4.8",
+    "mustache-express": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Femel/weather-widget.git"
+  },
+  "author": "Femel",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/Femel/weather-widget/issues"
+  }
+}

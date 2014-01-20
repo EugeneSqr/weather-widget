@@ -17,9 +17,20 @@ request({ uri: buildWeatherUrl(cities.Nino) },
                 if (!error && response.statusCode == 200) {
                         parseString(body, function (err, result) {
                                 var extracted = extractor.extract(result);
-                                console.dir(extracted);
-                                imageBuilder.build(extracted);
-                                storage.persist(null);
+                                if (!extracted || !extracted.days || extracted.days.length == 0) {
+                                        throw new Error('Extracted data is invalid');
+                                }
+                                
+                                storage.init(extracted.days.length);
+                                for(var i = 0; i < extracted.days.length; i++) {
+                                        var image = imageBuilder.build(extracted.days[i]);
+                                        if (!image) {
+                                                throw new Error('Failed generating widget image for ' + i + 'day');
+                                        }
+
+                                        var key = extracted.id + '.' + i;
+                                        storage.persist(key, image);
+                                }
                         });
                 }
         });

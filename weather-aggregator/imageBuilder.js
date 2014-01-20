@@ -7,16 +7,15 @@ var Canvas = require('canvas'),
 var day_label = "День:",
     night_label = "Ночь:"
 
-exports.build = function(data) {
-        var item = data.days[0];
+exports.build = function(day_data) {
         // Header
         ctx.font = 'bold 12px Impact';
-        ctx.fillText(item.date, 3, 12);
+        ctx.fillText(day_data.date, 3, 12);
         draw_horizontal_line(ctx, 3, 147, 15);
         // Day
-        fill_data(ctx, day_label, item.day_time, 28);
+        fill_data(ctx, day_label, day_data.day_time, 28);
         // Night
-        fill_data(ctx, night_label, item.night_time, 41);
+        fill_data(ctx, night_label, day_data.night_time, 41);
 
         return canvas.toBuffer();
 }

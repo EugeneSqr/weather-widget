@@ -2,7 +2,8 @@ var parseString = require('xml2js').parseString,
     request = require('request'),
     extractor = require('./extractor.js'),
     imageBuilder = require('./imageBuilder.js'),
-    Storage = require('./storage.js').Storage;
+    Storage = require('./storage.js').Storage,
+    ImageBuilder = require('./imageBuilder.js').ImageBuilder;
 
 var baseUrl = 'http://export.yandex.ru/weather-ng/forecasts/';
 var cities = Object.freeze( {
@@ -33,6 +34,7 @@ function processServiceData(data) {
                 }
                 
                 var storage = new Storage(extracted.days.length);
+                var imageBuilder = new ImageBuilder();
                 for(var i = 0; i < extracted.days.length; i++) {
                         var image = imageBuilder.build(extracted.days[i]);
                         if (!image) {

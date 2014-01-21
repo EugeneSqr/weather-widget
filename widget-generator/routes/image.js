@@ -7,6 +7,7 @@ var redis = require("redis"),
     client = redis.createClient(null, null, { return_buffers: true });
 
 exports.get = function(req, res){
+        console.log(req);
         client.get(req.params.key, function(err, value) {
                 if (err) throw new Error(err);
                 res.writeHead(200, {

@@ -1,0 +1,16 @@
+<form method="POST">
+    <select id="city" name="city">{{#cities}}
+        <option value="{{code}}">{{name}}</option>
+    {{/cities}}</select> <br />
+
+    <select id="days_number" name="days_number">{{#days}}
+        <option value="{{.}}">{{.}}</option>
+    {{/days}}</select> <br />
+
+    {{#orientation}}
+    <input type="radio" name="orientation" value="1" {{#vertical}}checked{{/vertical}}>Vertical</input>
+    <input type="radio" name="orientation" value="0" {{#horizontal}}checked{{/horizontal}}>Horizontal</input>
+    {{/orientation}} <br />
+
+    <input type="submit" value="Get Widget">
+</form>

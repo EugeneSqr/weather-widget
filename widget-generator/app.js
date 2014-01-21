@@ -6,6 +6,7 @@
 var express = require('express');
 var mustacheExpress = require('mustache-express');
 var routes = require('./routes');
+var image = require('./routes/image');
 var http = require('http');
 var path = require('path');
 
@@ -30,6 +31,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/image/:key', image.get);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

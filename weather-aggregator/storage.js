@@ -1,23 +1,29 @@
-var redis = require("redis"), 
-    client = redis.createClient();
+var redis = require("redis");
 
-client.on("error", function (err) {
-        client.quit();
-        throw new Error('Error ' + err);
-});
+exports.Storage = function(length) {
+        var self = this;
 
-var items_left = 0;
-exports.init = function(length) {
-        items_left = length;
+        self.client = getClient();
+        self.length = length;
+        self.persist = function(key, value) {
+                self.client.set(key, value, function() {
+                        console.log('data for ' + key + ' is persisted');
+                        self.length--;
+                        if (self.length == 0) {
+                                console.log('all data saved.');
+                                self.client.quit();
+                        }
+                });
+        }
 }
 
-exports.persist = function(key, value) {
-        client.set(key, value, function() {
-                console.log('data for ' + key + ' is persisted');
-                items_left--;
-                if (items_left == 0) {
-                        console.log('all data saved.');
-                        client.quit();
-                }
+function getClient() {
+        var client = redis.createClient();
+
+        client.on("error", function (err) {
+                this.quit();
+                throw new Error('Error ' + err);
         });
+
+        return client;
 }

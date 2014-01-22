@@ -6,3 +6,30 @@ body {
 a {
   color: #00B7FF;
 }
+
+#main {
+    min-height: 300px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.top_box {
+    border: 1px solid black;
+    float : left;
+    padding: 10px;
+}
+
+.preview {
+    margin-left: 20px;
+}
+
+.top_box select, label, input {
+    margin: 5px;
+    width: 100px;
+}
+
+.bottom textarea {
+    margin-top : 20px;
+}

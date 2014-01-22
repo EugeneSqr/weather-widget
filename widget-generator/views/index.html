@@ -5,9 +5,19 @@
 </head>
 <body>
     <h1>{{title}}</h1>
-    {{>settings}}
-    <div id="preview"></div>
-    <pre id="source"></pre>
+    <div id="main">
+        <div id="settings" class="top_box">
+            {{>settings}}
+        </div>
+        <div class="top_box preview">
+            <h2>Preview</h2>
+            <div id="preview"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="bottom">
+        <textarea rows="10" cols="65" readonly id="source"></textarea>
+    </div>
     <script>
     (function(){
         $('#get_button').on('click', function() {

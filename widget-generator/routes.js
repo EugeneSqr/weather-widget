@@ -2,6 +2,11 @@ var redis = require("redis"),
     client = redis.createClient(null, null, { return_buffers: true });
 
 var routes = function(app) {
+        var orientation = Object.freeze({
+                Vertical : 1,
+                Horizontal : 0
+        });
+
         app.get('/', function(req, res) {
                 var data = {
                         title : "Weather widget",
@@ -11,7 +16,7 @@ var routes = function(app) {
                                 { name : "Peter", code : "26063" } ],
                         days : [ 1, 3, 7],
                         orientation : {
-                                def : 1,
+                                def : orientation.Vertical,
                                 vertical : function() {
                                         return this.def;
                                 },
@@ -28,13 +33,11 @@ var routes = function(app) {
                 var model = {
                         days : [0, 1, 2, 3, 4, 5, 6].slice(0, req.params.days),
                         city : req.params.city,
-                        orientation : req.params.orient
+                        orient : req.params.orient == orientation.Horizontal
                 };
-                console.log(model);
                 // TODO: add model validation
                 app.render('partials/widget', model, function(err, html) {
                         if (err) throw new Error(err);
-                        console.log(html);
 
                         res.send(200, html);
                 });

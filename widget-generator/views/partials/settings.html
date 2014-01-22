@@ -1,14 +1,18 @@
+<h2>Settings</h2>
+<label for="city">City:</label><br />
 <select id="city" name="city">{{#cities}}
     <option value="{{code}}">{{name}}</option>
 {{/cities}}</select> <br />
 
+<label for="days_number">Number of days:</label><br />
 <select id="days_number" name="days_number">{{#days}}
     <option value="{{.}}">{{.}}</option>
 {{/days}}</select> <br />
 
+<label for="orientation">Orientation</label><br />
 {{#orientation}}
-<input type="radio" class="radio_orientation" value="1" {{#vertical}}checked{{/vertical}}>Vertical</input>
-<input type="radio" class="radio_orientation" value="0" {{#horizontal}}checked{{/horizontal}}>Horizontal</input>
+<input type="radio" class="radio_orientation" name="orientation" value="1" {{#vertical}}checked{{/vertical}}>Vertical</input>
+<input type="radio" class="radio_orientation" name="orientation" value="0" {{#horizontal}}checked{{/horizontal}}>Horizontal</input>
 {{/orientation}} <br />
 
 <input type="button" id="get_button" value="Get Widget">

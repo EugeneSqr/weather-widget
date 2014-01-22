@@ -7,11 +7,8 @@ var express = require('express');
 var mustacheExpress = require('mustache-express');
 var http = require('http');
 var path = require('path');
-// routes
-var index = require('./routes/index');
-var image = require('./routes/image');
-
 var app = express();
+var routes = require('./routes')(app);
 
 var viewsDirectory = path.join(__dirname, 'views');
 app.engine('html', mustacheExpress(path.join(viewsDirectory, 'partials'), '.html'));
@@ -31,10 +28,6 @@ app.use(express.bodyParser());
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-app.get('/', index.get);
-app.post('/', index.post);
-app.get('/image/:key', image.get);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

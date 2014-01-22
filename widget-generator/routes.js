@@ -25,8 +25,16 @@ var routes = function(app) {
         });
 
         app.get('/widget/:city/:days/:orient', function(req, res) {
-                app.render('partials/widget', {}, function(error, html) {
+                var model = {
+                        days : [0, 1, 2, 3, 4, 5, 6].slice(0, req.params.days),
+                        city : req.params.city,
+                        orientation : req.params.orient
+                };
+                console.log(model);
+                // TODO: add model validation
+                app.render('partials/widget', model, function(err, html) {
                         if (err) throw new Error(err);
+                        console.log(html);
 
                         res.send(200, html);
                 });

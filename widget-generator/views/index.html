@@ -1,10 +1,25 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js'></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
 <body>
     <h1>{{title}}</h1>
     {{>settings}}
+    <div id="preview"></div>
+    <pre id="source"></pre>
+    <script>
+    (function(){
+        $('#get_button').on('click', function() {
+            var days=$('#days_number').val();
+            var city=$('#city').val();
+            var orient=$('.radio_orientation:checked').val();
+            $.get("widget/"+city+"/"+days+"/"+orient, function(data) {
+                $("#preview").html(data);
+                $("#source").text(data);
+            });
+        });
+    })()
+    </script>
 </body>
 </html>

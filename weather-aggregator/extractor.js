@@ -28,6 +28,7 @@ exports.extract = function(data) {
 function extract_partial(data) {
         return {
                 temperature : data.temperature[0],
+                temperature_color: data['temperature-data'][0].avg[0].$.bgcolor,
                 weather_type : data.weather_type_short[0]
         }                        
 }

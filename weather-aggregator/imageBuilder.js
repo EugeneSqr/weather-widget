@@ -9,12 +9,14 @@ exports.ImageBuilder = function() {
         var self = this;
 
         self.build = function(day_data) {
-                var canvas = new Canvas(150, 45);
+                var canvas = new Canvas(150, 55);
                 var ctx = canvas.getContext('2d');
                 // Header
-                ctx.font = 'bold 12px Impact';
+                ctx.font = 'bold 12px Lato';
+                
                 ctx.fillText(day_data.date, 3, 12);
                 draw_horizontal_line(ctx, 3, 147, 15);
+                
                 // Day
                 fill_data(ctx, day_label, day_data.day_time, 28);
                 // Night
@@ -26,7 +28,11 @@ exports.ImageBuilder = function() {
 
 function fill_data(context, label, data, vertical_offset) {
         var text = label + ' ' + data.temperature + ', ' + data.weather_type;
-        context.font = 'normal 10px Impact';
+        context.font = 'normal 10px Lato';
+        context.textBaseline = 'top';
+        context.fillStyle = '#' + data.temperature_color;
+        context.fillRect(3, vertical_offset, 150, 10);
+        context.fillStyle = '#000';
         context.fillText(text, 3, vertical_offset);
 }
 

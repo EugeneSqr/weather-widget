@@ -31,7 +31,7 @@ function fill_data(context, label, data, vertical_offset) {
         context.font = 'normal 10px Lato';
         context.textBaseline = 'top';
         context.fillStyle = '#' + data.temperature_color;
-        context.fillRect(3, vertical_offset, 150, 10);
+        context.fillRect(3, vertical_offset, 150, 20);
         context.fillStyle = '#000';
         context.fillText(text, 3, vertical_offset);
 }
